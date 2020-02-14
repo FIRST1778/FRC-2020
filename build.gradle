@@ -67,14 +67,14 @@ tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).all {
         jvmTarget = "1.8"
     }
     dependsOn "spotlessApply"
-}
+}Q
 
 test {
     useJUnitPlatform {}
 }
 
 wrapper {
-    gradleVersion = "6.0.1"
+    gradleVersion = "6.1.1"
 }
 
 spotless {
