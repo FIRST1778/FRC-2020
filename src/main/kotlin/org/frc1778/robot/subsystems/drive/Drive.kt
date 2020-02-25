@@ -8,13 +8,19 @@ import edu.wpi.first.wpilibj.kinematics.DifferentialDriveOdometry
 import org.frc1778.robot.Constants
 import org.frc1778.robot.subsystems.drive.commands.TeleopDriveCommand
 import org.ghrobotics.lib.mathematics.units.nativeunit.DefaultNativeUnitModel
-import org.ghrobotics.lib.motors.ctre.FalconFX
+import org.ghrobotics.lib.motors.ctre.falconFX
 import org.ghrobotics.lib.subsystems.drive.FalconWestCoastDrivetrain
 
 object Drive : FalconWestCoastDrivetrain() {
 
-    override val leftMotor = FalconFX(Constants.Drive.LEFT_MASTER_ID, Constants.Drive.NATIVE_UNIT_MODEL)
-    override val rightMotor = FalconFX(Constants.Drive.RIGHT_MASTER_ID, Constants.Drive.NATIVE_UNIT_MODEL)
+    override val leftMotor = falconFX(Constants.Drive.LEFT_MASTER_ID, Constants.Drive.NATIVE_UNIT_MODEL) {
+        outputInverted = false
+        brakeMode = true
+    }
+    override val rightMotor = falconFX(Constants.Drive.RIGHT_MASTER_ID, Constants.Drive.NATIVE_UNIT_MODEL) {
+        outputInverted = true
+        brakeMode = true
+    }
 
     override val gyro = { Rotation2d() }
 
@@ -30,16 +36,16 @@ object Drive : FalconWestCoastDrivetrain() {
     override fun enableClosedLoopControl() {}
 
     init {
-        val leftSlave = FalconFX(Constants.Drive.LEFT_SLAVE_ID, DefaultNativeUnitModel)
-        val rightSlave = FalconFX(Constants.Drive.RIGHT_SLAVE_ID, DefaultNativeUnitModel)
-
-        leftSlave.follow(leftMotor)
-        rightSlave.follow(rightMotor)
-
-        leftMotor.outputInverted = false
-        leftSlave.outputInverted = false
-        rightMotor.outputInverted = true
-        rightSlave.outputInverted = true
+        val leftSlave = falconFX(Constants.Drive.LEFT_SLAVE_ID, DefaultNativeUnitModel) {
+            outputInverted = false
+            brakeMode = true
+            follow(leftMotor)
+        }
+        val rightSlave = falconFX(Constants.Drive.RIGHT_SLAVE_ID, DefaultNativeUnitModel) {
+            outputInverted = true
+            brakeMode = true
+            follow(rightMotor)
+        }
 
         defaultCommand = TeleopDriveCommand()
     }
