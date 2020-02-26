@@ -1,5 +1,6 @@
 package org.frc1778.robot
 
+import org.ghrobotics.lib.mathematics.units.derived.degrees
 import org.ghrobotics.lib.mathematics.units.inches
 import org.ghrobotics.lib.mathematics.units.nativeunit.NativeUnitLengthModel
 import org.ghrobotics.lib.mathematics.units.nativeunit.nativeUnits
@@ -31,8 +32,18 @@ object Constants {
         const val ACTUATION_LEFT_ID = 31
         const val ACTUATION_RIGHT_ID = 32
         const val AGITATION_ID = 33
-        const val ACTUATION_LEFT_ENCODER_CHANNEL = 0
+        const val ACTUATION_LEFT_ENCODER_CHANNEL = 1
         const val ACTUATION_RIGHT_ENCODER_CHANNEL = 0
+        const val ACTUATION_KP = 0.1
+        const val ACTUATION_KI = 0.0
+        const val ACTUATION_KD = 0.0
+
+        val LEFT_ACTUATION_OFFSET = 0.0.degrees
+        val RIGHT_ACTUATION_OFFSET = 0.0.degrees
+
+        val STOW_POSITION = 0.0.degrees
+        val SHOOT_POSITION = 45.0.degrees
+        val COLLECT_POSITION = 80.0.degrees
     }
 
     object Climber {

@@ -10,14 +10,10 @@ object Robot : FalconTimedRobot() {
     init {
         +Drive
         +Shooter
+        +Collector
     }
 
-    override fun autonomousPeriodic() {
-    }
-
-    override fun teleopInit() {
-    }
-
-    override fun teleopPeriodic() {
+    override fun robotPeriodic() {
+        Controls.update()
     }
 }
