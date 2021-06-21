@@ -45,7 +45,7 @@ dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib"
 
     implementation "com.github.MTHSRoboticsClub:freezylib:-SNAPSHOT"
-    implementation "org.ghrobotics:FalconLibrary:2020.2.3"
+    implementation "org.ghrobotics:FalconLibrary:2021.1.1"
 
     implementation wpi.deps.wpilib()
     nativeZip wpi.deps.wpilibJni(wpi.platforms.roborio)
